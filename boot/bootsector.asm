@@ -23,7 +23,6 @@ begin_pm:
 
     jmp $
 
-MSG_REAL_MODE db "Started in 16 bit real-mode", 0
 MSG_PROT_MODE db "Loaded 32-bit protected mode", 0
 
 times 510-($-$$) db 0
