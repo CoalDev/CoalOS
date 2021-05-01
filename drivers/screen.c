@@ -1,5 +1,6 @@
 #include "ports.h"
 #include "screen.h"
+#include "../utils/utils.h"
 
 int get_curser_offset();
 void set_curser_offset(int offset);
@@ -58,6 +59,21 @@ int print_char(char c, int col, int row, char attr){
         vid_mem[offset+1] = attr;
         offset += 2;
     }
+
+    if(offset >= MAX_COLS * MAX_ROWS * 2){
+        int i = 1;
+        for(i; i < MAX_ROWS; i++){
+            memcpy(get_offset(0, i) + VIDEO_MEM_ADDRESS, get_offset(0, i-1) + VIDEO_MEM_ADDRESS, MAX_COLS * 2);
+        }
+
+        char* last_line = get_offset(0, MAX_ROWS-1) + VIDEO_MEM_ADDRESS;
+        for(i = 0; i < MAX_COLS * 2; i++){
+            last_line[i] = 0;
+        }
+        
+        offset -= MAX_COLS * 2;
+    }
+
     set_curser_offset(offset);
     return offset;
 }
