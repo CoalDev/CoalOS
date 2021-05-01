@@ -1,6 +1,6 @@
-# $^ = all dependencies
 # $@ = target file
 # $< = first dependency
+# $^ = all dependencies
 
 all: run
 
@@ -13,9 +13,6 @@ kernel_entry.o: boot/kernel_entry.asm
 kernel.o: kernel/kernel.c
 	i386-elf-gcc -ffreestanding -c $< -o $@
 
-kernel.dis: kernel.bin
-	ndisasm -b 32 $< > $@
-
 bootsector.bin: boot/bootsector.asm
 	nasm $< -f bin -o $@
 
@@ -26,4 +23,4 @@ run: os-image.bin
 	qemu-system-i386 -fda $<
 
 clean:
-	rm *.bin *.o *.dis
+	rm *.bin *.o
