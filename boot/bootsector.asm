@@ -31,7 +31,7 @@ load_kernel:
 
     mov bx, KERNEL_OFFSET
     mov dl, [BOOT_DRIVE]
-    mov dh, 2
+    mov dh, 16               ; The kernel will be large
     call disk_load
     ret
 
