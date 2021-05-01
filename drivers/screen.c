@@ -19,7 +19,7 @@ void kprint_pos(char* msg, int col, int row){
         col = get_offset_col(offset);
     }
 
-    int i;
+    int i = 0;
     while(msg[i] != 0){
         offset = print_char(msg[i++], col, row, WHITE_ON_BLACK);
         row = get_offset_row(offset);
