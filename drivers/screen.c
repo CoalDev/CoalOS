@@ -33,7 +33,7 @@ void kprint(char* msg){
 }
 
 int print_char(char c, int col, int row, char attr){
-    char* vid_mem = (unsigned char*) VIDEO_MEM_ADDRESS;
+    char* vid_mem = (char*) VIDEO_MEM_ADDRESS;
     if (!attr){
         attr = WHITE_ON_BLACK;
     }
@@ -61,12 +61,12 @@ int print_char(char c, int col, int row, char attr){
     }
 
     if(offset >= MAX_COLS * MAX_ROWS * 2){
-        int i = 1;
-        for(i; i < MAX_ROWS; i++){
-            memcpy(get_offset(0, i) + VIDEO_MEM_ADDRESS, get_offset(0, i-1) + VIDEO_MEM_ADDRESS, MAX_COLS * 2);
+        int i;
+        for(i = 1; i < MAX_ROWS; i++){
+            memcpy((char *)(get_offset(0, i) + VIDEO_MEM_ADDRESS), (char *)(get_offset(0, i-1) + VIDEO_MEM_ADDRESS), MAX_COLS * 2);
         }
 
-        char* last_line = get_offset(0, MAX_ROWS-1) + VIDEO_MEM_ADDRESS;
+        char* last_line = (char *)(get_offset(0, MAX_ROWS-1) + VIDEO_MEM_ADDRESS);
         for(i = 0; i < MAX_COLS * 2; i++){
             last_line[i] = 0;
         }
@@ -101,7 +101,7 @@ void set_curser_offset(int offset){
 
 void clear_screen(){
     int screen_size = MAX_COLS * MAX_ROWS;
-    char* vid_mem = (unsigned char*) VIDEO_MEM_ADDRESS;
+    char* vid_mem = (char*) VIDEO_MEM_ADDRESS;
     int i;
     for(i = 0; i < screen_size; i++){
         vid_mem[i * 2] = ' ';
