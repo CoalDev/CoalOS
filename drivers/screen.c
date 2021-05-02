@@ -98,6 +98,9 @@ void set_curser_offset(int offset){
     port_byte_out(CRTC_DATA_REG, (unsigned char)(offset & 0xff));
 }
 
+void initialize_screen(){
+    set_curser_offset(0);
+}
 
 void clear_screen(){
     int screen_size = MAX_COLS * MAX_ROWS;
