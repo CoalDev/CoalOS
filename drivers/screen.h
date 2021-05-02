@@ -1,3 +1,6 @@
+#ifndef SCREEN_H
+#define SCREEN_H
+
 #define VIDEO_MEM_ADDRESS 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80
@@ -11,3 +14,5 @@
 void clear_screen();
 void kprint_pos(char* msg, int col, int row);
 void kprint(char* msg);
+
+#endif
