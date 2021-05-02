@@ -1,5 +1,5 @@
-#ifndef PORTS_H
-#define PORTS_H
+#ifndef H_PORTS
+#define H_PORTS
 
 unsigned char port_byte_in(unsigned short port);
 void port_byte_out(unsigned short port, unsigned char data);
