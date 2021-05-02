@@ -14,5 +14,6 @@
 void clear_screen();
 void kprint_pos(char* msg, int col, int row);
 void kprint(char* msg);
+void initialize_screen();
 
 #endif
